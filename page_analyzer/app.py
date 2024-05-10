@@ -1,4 +1,5 @@
-from flask import Flask
+from flask import (Flask,
+                   render_template)
 import os
 
 
@@ -6,6 +7,6 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY')
 
 
-@app.route("/")
-def hello_world():
-    return "<p>Hello, World!</p>"
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    return render_template('index.html')
