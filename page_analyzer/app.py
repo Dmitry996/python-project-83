@@ -6,7 +6,8 @@ from flask import (Flask,
                    url_for
                    )
 from dotenv import load_dotenv
-from .func_url import validate, normalizer, get_data
+from .url import validate, normalizer
+from .html import get_data
 from .db import URLRepository
 import os
 import requests
@@ -74,6 +75,7 @@ def url_check(id):
     try:
         page = requests.get(url.name)
         page.raise_for_status()
+
     except requests.exceptions.RequestException:
         flash('Произошла ошибка при проверке', 'danger')
         return redirect(url_for('urls_id', id=id))
