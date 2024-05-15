@@ -73,7 +73,8 @@ def url_check(id):
 
     try:
         page = requests.get(url.name)
-    except Exception:
+        page.raise_for_status()
+    except requests.exceptions.RequestException:
         flash('Произошла ошибка при проверке', 'alert-danger')
         return redirect(url_for('urls_id', id=id))
 
