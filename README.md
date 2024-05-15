@@ -14,5 +14,8 @@ This project was built using these tools:
 | [Flask](https://flask.palletsprojects.com/en/3.0.x/)                                         | "Microframe for creating web applications in Python" |
 
 ---
+<h2>Description</h2>
+Page Analyzer is a website that analyzes the specified pages for SEO suitability.
 
 <h2><a href="https://python-project-83-p52t.onrender.com/">An example of how the application works</a></h2>
+---
