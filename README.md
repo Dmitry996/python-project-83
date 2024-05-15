@@ -18,4 +18,3 @@ This project was built using these tools:
 Page Analyzer is a website that analyzes the specified pages for SEO suitability.
 
 <h2><a href="https://python-project-83-p52t.onrender.com/">An example of how the application works</a></h2>
----
