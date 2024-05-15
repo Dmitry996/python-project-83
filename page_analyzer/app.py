@@ -41,18 +41,18 @@ def post_urls():
     error = validate(url)
 
     if error:
-        flash(error, 'alert-danger')
+        flash(error, 'danger')
         return render_template('index.html', url=url), 422
 
     url_name = normalizer(url)
     url_check = repo.find_url_by_name(url_name)
 
     if url_check:
-        flash('Страница уже существует', 'alert-info')
+        flash('Страница уже существует', 'info')
         return redirect(url_for('urls_id', id=url_check.id))
 
     url_id = repo.create_url(url_name)
-    flash('Страница успешно добавлена', 'alert-success')
+    flash('Страница успешно добавлена', 'success')
     return redirect(url_for('urls_id', id=url_id))
 
 
@@ -75,12 +75,12 @@ def url_check(id):
         page = requests.get(url.name)
         page.raise_for_status()
     except requests.exceptions.RequestException:
-        flash('Произошла ошибка при проверке', 'alert-danger')
+        flash('Произошла ошибка при проверке', 'danger')
         return redirect(url_for('urls_id', id=id))
 
     status_code = page.status_code
     h1, title, description = get_data(page.text)
     repo.create_url_check(id, status_code, h1, title, description)
 
-    flash('Страница успешно проверена', 'alert-success')
+    flash('Страница успешно проверена', 'success')
     return redirect(url_for('urls_id', id=id))
