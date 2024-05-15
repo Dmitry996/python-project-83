@@ -1,5 +1,6 @@
 from psycopg2.extras import NamedTupleCursor
 import psycopg2
+from datetime import datetime
 
 
 class ConnectDB:
@@ -34,10 +35,10 @@ class URLRepository:
 
     def create_url(self, name):
         with ConnectDB(self.db_url) as curs:
-            curs.execute("""INSERT INTO urls (name)
+            curs.execute("""INSERT INTO urls (name, created_at)
                             VALUES
-                                (%s)
-                            RETURNING id;""", (name,))
+                                (%s, %s)
+                            RETURNING id;""", (name, datetime.now()))
             return curs.fetchone().id
 
     def create_url_check(self, id, status_code, h1, title, description):
@@ -47,10 +48,11 @@ class URLRepository:
                                 status_code,
                                 h1,
                                 title,
-                                description)
+                                description,
+                                created_at)
                             VALUES
-                                (%s, %s, %s, %s, %s);
-                                """, (id, status_code, h1, title, description))
+                                (%s, %s, %s, %s, %s,%s);
+                                """, (id, status_code, h1, title, description, datetime.now()))  # noqa: E501
 
     def find_all_urls(self):
         with ConnectDB(self.db_url) as curs:
