@@ -6,8 +6,8 @@ from flask import (Flask,
                    url_for
                    )
 from dotenv import load_dotenv
-from .url import validate, normalizer
-from .html import get_data
+from .url_utilities import validate, normalizer
+from .html_utilities import get_data
 from .db import URLRepository
 import os
 import requests
