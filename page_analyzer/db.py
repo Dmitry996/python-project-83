@@ -5,8 +5,7 @@ from datetime import datetime
 
 class ConnectDB:
     """
-    This class is used to work with
-    the postgresql database in the context manager.
+    Context manager for working with postgresql
     """
     def __init__(self, db_url) -> None:
         self.db_url = db_url
