@@ -7,9 +7,9 @@ def validate(url):
     if not url:
         error = 'URL обязателен'
     elif len(url) > 255:
-        error = ('URL превышает 255 символов')
+        error = 'URL превышает 255 символов'
     elif not validators.url(url):
-        error = ('Некорректный URL')
+        error = 'Некорректный URL'
     return error
 
 
